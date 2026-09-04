@@ -4,7 +4,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kambiyum Katman Kitaplık 3D</title>
-<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.1/dist/model-viewer.min.js"></script>
+
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="modulepreload"
+      href="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.1/dist/model-viewer.min.js">
+<link rel="preload"
+      href="./KATMAN-KITAPLIK_3_V10-STIL.glb"
+      as="fetch"
+      type="model/gltf-binary"
+      crossorigin="anonymous">
+
+<script type="module"
+        src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.1/dist/model-viewer.min.js"></script>
+
 <style>
 *{box-sizing:border-box}
 html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:Arial,Helvetica,sans-serif}
@@ -16,8 +29,20 @@ html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:Arial,Hel
 .k3d-360{text-align:right;white-space:nowrap}
 .k3d-360 strong{display:block;font-size:26px;font-weight:400}
 .k3d-360 span{font-size:9px;letter-spacing:.15em;opacity:.45}
-.stage{width:100%;margin:-18px 0 -12px}
-model-viewer{display:block;width:100%;height:500px;background:#fff;--poster-color:#fff}
+
+.stage{width:100%;margin:-18px 0 -12px;position:relative;height:500px;background:#fff;overflow:hidden}
+.instant-poster{
+  position:absolute;inset:0;z-index:1;
+  background:#fff url("data:image/webp;base64,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") center center/contain no-repeat;
+  opacity:1;transition:opacity .18s ease;
+}
+.stage.ready .instant-poster{opacity:0;pointer-events:none}
+model-viewer{
+  position:absolute;inset:0;z-index:2;
+  display:block;width:100%;height:100%;
+  background:transparent;--poster-color:transparent
+}
+
 .k3d-footer{border-top:1px solid rgba(0,0,0,.12);padding-top:18px;display:grid;grid-template-columns:1fr 2fr;gap:36px;align-items:end}
 .size{display:flex;flex-direction:column;gap:5px}
 .size span{font-size:8px;letter-spacing:.14em;opacity:.42}
@@ -26,14 +51,14 @@ model-viewer{display:block;width:100%;height:500px;background:#fff;--poster-colo
 .features div{border-left:1px solid rgba(0,0,0,.12);padding-left:12px;display:flex;flex-direction:column;gap:5px}
 .features span{font-size:8px;opacity:.34}
 .features strong{font-size:9px;font-weight:400;letter-spacing:.1em}
+
 @media(max-width:700px){
   .k3d{padding:26px 18px 22px}
   .k3d h2{font-size:26px}
   .k3d p{max-width:220px}
   .k3d-360 strong{font-size:21px}
   .k3d-360 span{display:none}
-  .stage{margin:0 -18px;width:calc(100% + 36px)}
-  model-viewer{height:390px}
+  .stage{margin:0 -18px;width:calc(100% + 36px);height:390px}
   .k3d-footer{grid-template-columns:1fr;gap:18px}
   .features{gap:6px}
   .features div{padding-left:8px}
@@ -52,8 +77,11 @@ model-viewer{display:block;width:100%;height:500px;background:#fff;--poster-colo
     <div class="k3d-360"><strong>360°</strong><span>SÜRÜKLE / YAKINLAŞTIR</span></div>
   </div>
 
-  <div class="stage">
+  <div class="stage" id="stage">
+    <div class="instant-poster" aria-hidden="true"></div>
+
     <model-viewer
+      id="viewer"
       src="./KATMAN-KITAPLIK_3_V10-STIL.glb"
       alt="Kambiyum Katman Kitaplık 3D görünümü"
       camera-controls
@@ -87,5 +115,11 @@ model-viewer{display:block;width:100%;height:500px;background:#fff;--poster-colo
     </div>
   </div>
 </section>
+
+<script>
+const viewer = document.getElementById('viewer');
+const stage = document.getElementById('stage');
+viewer.addEventListener('load', () => stage.classList.add('ready'), {once:true});
+</script>
 </body>
 </html>
