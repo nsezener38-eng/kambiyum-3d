@@ -243,21 +243,29 @@ stage.addEventListener('pointerdown', markInteracted, {once:true});
 stage.addEventListener('touchstart', markInteracted, {once:true, passive:true});
 stage.addEventListener('wheel', markInteracted, {once:true, passive:true});
 
+
+
 const zoomInBtn = document.getElementById('zoomIn');
 const zoomOutBtn = document.getElementById('zoomOut');
 
-const ZOOM_MIN_RADIUS = 4.65;
-const ZOOM_MAX_RADIUS = 6.35;
-const ZOOM_STEP = 0.30;
+/* Stabil masaüstü zoom:
+   Görüş açısı küçüldükçe model yakınlaşır, büyüdükçe uzaklaşır.
+   Fare tekeri model tarafından tutulmaz. */
+let currentFov = 25;
+const FOV_MIN = 19;
+const FOV_MAX = 31;
+const FOV_STEP = 3;
 
-function setK3dZoom(direction){
+async function applyK3dFov(nextFov){
   if (!viewer || window.matchMedia('(max-width: 700px)').matches) return;
 
-  const orbit = viewer.getCameraOrbit();
-  let radius = orbit.radius + direction * ZOOM_STEP;
-  radius = Math.max(ZOOM_MIN_RADIUS, Math.min(ZOOM_MAX_RADIUS, radius));
+  currentFov = Math.max(FOV_MIN, Math.min(FOV_MAX, nextFov));
+  viewer.fieldOfView = `${currentFov}deg`;
 
-  viewer.cameraOrbit = `${orbit.theta}rad ${orbit.phi}rad ${radius}m`;
+  /* Lit/model-viewer property update tamamlandıktan sonra hedefe geç. */
+  if (viewer.updateComplete) {
+    await viewer.updateComplete;
+  }
   viewer.jumpCameraToGoal();
   stage.classList.add('interacted');
 }
@@ -265,13 +273,13 @@ function setK3dZoom(direction){
 zoomInBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   e.stopPropagation();
-  setK3dZoom(-1);
+  applyK3dFov(currentFov - FOV_STEP);
 });
 
 zoomOutBtn?.addEventListener('click', (e) => {
   e.preventDefault();
   e.stopPropagation();
-  setK3dZoom(1);
+  applyK3dFov(currentFov + FOV_STEP);
 });
 
 </script>
