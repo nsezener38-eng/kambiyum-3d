@@ -154,6 +154,16 @@ model-viewer{
   outline-offset:3px;
 }
 @media(max-width:700px){
+
+  /* Mobilde 01 / 02 / 03 özellik satırını kaldır */
+  .features{
+    display:none !important;
+  }
+
+  .k3d-footer{
+    grid-template-columns:1fr !important;
+  }
+
   .k3d-zoom-controls{display:none !important;}
 }
 
@@ -208,7 +218,6 @@ model-viewer{
       src="./KATMAN-KITAPLIK_3_V10-STIL.glb"
       alt="Kambiyum Katman Kitaplık 3D görünümü"
       camera-controls
-      disable-zoom
       auto-rotate
       auto-rotate-delay="2200"
       rotation-per-second="1.5deg"
@@ -216,8 +225,8 @@ model-viewer{
       camera-target="1.8m 1.0835m -0.135m"
       camera-orbit="30deg 70deg 5.5m"
       field-of-view="25deg"
-      min-camera-orbit="auto auto 3.7m"
-      max-camera-orbit="auto auto 9m"
+      min-camera-orbit="auto auto 4.65m"
+      max-camera-orbit="auto auto 6.35m"
       environment-image="neutral"
       exposure="0.56"
       shadow-intensity="0.82"
@@ -253,9 +262,19 @@ viewer.addEventListener('load', () => stage.classList.add('ready'), {once:true})
 const markInteracted = () => stage.classList.add('interacted');
 stage.addEventListener('pointerdown', markInteracted, {once:true});
 stage.addEventListener('touchstart', markInteracted, {once:true, passive:true});
-stage.addEventListener('wheel', markInteracted, {once:true, passive:true});
 
 
+
+
+/* DESKTOP WHEEL PASS-THROUGH
+   Native model zoom remains enabled for mobile pinch.
+   On desktop, stop the wheel before model-viewer receives it;
+   browser default scrolling remains active because preventDefault is not used. */
+stage.addEventListener('wheel', (e) => {
+  if (window.matchMedia('(min-width: 701px)').matches) {
+    e.stopPropagation();
+  }
+}, {capture:true, passive:true});
 
 const zoomInBtn = document.getElementById('zoomIn');
 const zoomOutBtn = document.getElementById('zoomOut');
