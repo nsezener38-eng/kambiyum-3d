@@ -43,6 +43,57 @@ model-viewer{
   background:transparent;--poster-color:transparent
 }
 
+.view-hint{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+  z-index:4;
+  pointer-events:none;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  width:112px;
+  height:112px;
+  border:1px solid rgba(20,20,20,.24);
+  border-radius:50%;
+  background:rgba(255,255,255,.72);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  color:#171717;
+  opacity:1;
+  transition:opacity .35s ease, transform .35s ease;
+}
+.view-hint::before{
+  content:"↔";
+  display:block;
+  font-size:18px;
+  line-height:1;
+  margin-bottom:8px;
+  opacity:.7;
+  animation:viewPulse 1.6s ease-in-out infinite;
+}
+.view-hint strong{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:.16em;
+}
+.view-hint span{
+  margin-top:5px;
+  font-size:8px;
+  letter-spacing:.14em;
+  opacity:.5;
+}
+.stage.interacted .view-hint{
+  opacity:0;
+  transform:translate(-50%,-50%) scale(.92);
+}
+@keyframes viewPulse{
+  0%,100%{transform:translateX(-3px);opacity:.45}
+  50%{transform:translateX(3px);opacity:.9}
+}
+
 .k3d-footer{border-top:1px solid rgba(0,0,0,.12);padding-top:18px;display:grid;grid-template-columns:1fr 2fr;gap:36px;align-items:end}
 .size{display:flex;flex-direction:column;gap:5px}
 .size span{font-size:8px;letter-spacing:.14em;opacity:.42}
@@ -59,6 +110,8 @@ model-viewer{
   .k3d-360 strong{font-size:21px}
   .k3d-360 span{display:none}
   .stage{margin:0 -18px;width:calc(100% + 36px);height:390px}
+  .view-hint{width:96px;height:96px}
+  .view-hint strong{font-size:10px}
   .k3d-footer{grid-template-columns:1fr;gap:18px}
   .features{gap:6px}
   .features div{padding-left:8px}
@@ -79,6 +132,10 @@ model-viewer{
 
   <div class="stage" id="stage">
     <div class="instant-poster" aria-hidden="true"></div>
+    <div class="view-hint" id="viewHint" aria-hidden="true">
+      <strong>VIEW 360°</strong>
+      <span>SÜRÜKLE</span>
+    </div>
 
     <model-viewer
       id="viewer"
@@ -110,7 +167,7 @@ model-viewer{
     </div>
     <div class="features">
       <div><span>01</span><strong>MODÜLER YAPI</strong></div>
-      <div><span>02</span><strong>BEYAZ AHŞAP</strong></div>
+      <div><span>02</span><strong>MALZEME DOKUSU</strong></div>
       <div><span>03</span><strong>DEMONTE TASARIM</strong></div>
     </div>
   </div>
@@ -120,6 +177,11 @@ model-viewer{
 const viewer = document.getElementById('viewer');
 const stage = document.getElementById('stage');
 viewer.addEventListener('load', () => stage.classList.add('ready'), {once:true});
+
+const markInteracted = () => stage.classList.add('interacted');
+stage.addEventListener('pointerdown', markInteracted, {once:true});
+stage.addEventListener('touchstart', markInteracted, {once:true, passive:true});
+stage.addEventListener('wheel', markInteracted, {once:true, passive:true});
 </script>
 </body>
 </html>
