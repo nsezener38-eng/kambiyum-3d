@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kambiyum Katman Kitaplık 3D</title>
+<script type="module" src="https://cdn.jsdelivr.net/npm/@google/model-viewer@4.3.1/dist/model-viewer.min.js"></script>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:Arial,Helvetica,sans-serif}
+.k3d{width:100%;background:#fff;padding:38px 4% 26px}
+.k3d-head{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
+.k3d-kicker{font-size:10px;letter-spacing:.22em;opacity:.48;margin-bottom:9px}
+.k3d h2{font-size:clamp(25px,2.5vw,40px);font-weight:400;letter-spacing:-.025em;margin:0 0 8px}
+.k3d p{margin:0;font-size:12px;line-height:1.55;opacity:.56}
+.k3d-360{text-align:right;white-space:nowrap}
+.k3d-360 strong{display:block;font-size:26px;font-weight:400}
+.k3d-360 span{font-size:9px;letter-spacing:.15em;opacity:.45}
+.stage{width:100%;margin:-18px 0 -12px}
+model-viewer{display:block;width:100%;height:500px;background:#fff;--poster-color:#fff}
+.k3d-footer{border-top:1px solid rgba(0,0,0,.12);padding-top:18px;display:grid;grid-template-columns:1fr 2fr;gap:36px;align-items:end}
+.size{display:flex;flex-direction:column;gap:5px}
+.size span{font-size:8px;letter-spacing:.14em;opacity:.42}
+.size strong{font-size:16px;font-weight:400}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.features div{border-left:1px solid rgba(0,0,0,.12);padding-left:12px;display:flex;flex-direction:column;gap:5px}
+.features span{font-size:8px;opacity:.34}
+.features strong{font-size:9px;font-weight:400;letter-spacing:.1em}
+@media(max-width:700px){
+  .k3d{padding:26px 18px 22px}
+  .k3d h2{font-size:26px}
+  .k3d p{max-width:220px}
+  .k3d-360 strong{font-size:21px}
+  .k3d-360 span{display:none}
+  .stage{margin:0 -18px;width:calc(100% + 36px)}
+  model-viewer{height:390px}
+  .k3d-footer{grid-template-columns:1fr;gap:18px}
+  .features{gap:6px}
+  .features div{padding-left:8px}
+  .features strong{font-size:8px;line-height:1.35}
+}
+</style>
+</head>
+<body>
+<section class="k3d">
+  <div class="k3d-head">
+    <div>
+      <div class="k3d-kicker">ÜRÜNÜ KEŞFET</div>
+      <h2>Katman Kitaplık</h2>
+      <p>Ürünün formunu ve detaylarını her açıdan inceleyin.</p>
+    </div>
+    <div class="k3d-360"><strong>360°</strong><span>SÜRÜKLE / YAKINLAŞTIR</span></div>
+  </div>
+
+  <div class="stage">
+    <model-viewer
+      src="./KATMAN-KITAPLIK_3_V10-STIL.glb"
+      alt="Kambiyum Katman Kitaplık 3D görünümü"
+      camera-controls
+      auto-rotate
+      auto-rotate-delay="2200"
+      rotation-per-second="1.5deg"
+      interaction-prompt="none"
+      camera-target="1.8m 1.0835m -0.135m"
+      camera-orbit="30deg 70deg 5.5m"
+      field-of-view="25deg"
+      min-camera-orbit="auto auto 3.7m"
+      max-camera-orbit="auto auto 9m"
+      environment-image="neutral"
+      exposure="0.56"
+      shadow-intensity="0.82"
+      shadow-softness="0.85"
+      touch-action="pan-y"
+      loading="eager">
+    </model-viewer>
+  </div>
+
+  <div class="k3d-footer">
+    <div class="size">
+      <span>GENİŞLİK × YÜKSEKLİK × DERİNLİK</span>
+      <strong>360 × 216,7 × 27 CM</strong>
+    </div>
+    <div class="features">
+      <div><span>01</span><strong>MODÜLER YAPI</strong></div>
+      <div><span>02</span><strong>BEYAZ AHŞAP</strong></div>
+      <div><span>03</span><strong>DEMONTE TASARIM</strong></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>
