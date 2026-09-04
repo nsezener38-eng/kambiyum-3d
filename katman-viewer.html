@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Kambiyum Katman Kitaplık 3D</title>
 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500&display=swap" rel="stylesheet">
+
+
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="modulepreload"
@@ -20,7 +25,7 @@
 
 <style>
 *{box-sizing:border-box}
-html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:Arial,Helvetica,sans-serif}
+html,body{margin:0;padding:0;background:#fff;color:#151515;font-family:'Figtree',Arial,Helvetica,sans-serif}
 .k3d{width:100%;background:#fff;padding:38px 4% 26px}
 .k3d-head{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
 .k3d-kicker{font-size:10px;letter-spacing:.22em;opacity:.48;margin-bottom:9px}
@@ -96,12 +101,12 @@ model-viewer{
 
 .k3d-footer{border-top:1px solid rgba(0,0,0,.12);padding-top:18px;display:grid;grid-template-columns:1fr 2fr;gap:36px;align-items:end}
 .size{display:flex;flex-direction:column;gap:5px}
-.size span{font-size:10px;letter-spacing:.14em;opacity:.42}
+.size span{font-size:10px;font-weight:400;letter-spacing:.12em;opacity:.5}
 .size strong{font-size:20px;font-weight:400}
 .features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
 .features div{border-left:1px solid rgba(0,0,0,.12);padding-left:12px;display:flex;flex-direction:column;gap:5px}
-.features span{font-size:10px;opacity:.34}
-.features strong{font-size:13px;font-weight:400;letter-spacing:.1em}
+.features span{font-size:10px;font-weight:400;letter-spacing:.04em;opacity:.55}
+.features strong{font-size:13px;font-weight:400;letter-spacing:.08em}
 
 @media(max-width:700px){
   .k3d{padding:26px 18px 22px}
@@ -127,7 +132,7 @@ model-viewer{
       <h2>Katman Kitaplık</h2>
       <p>Ürünün formunu ve detaylarını her açıdan inceleyin.</p>
     </div>
-    <div class="k3d-360"><strong>360°</strong><span>SÜRÜKLE / YAKINLAŞTIR</span></div>
+    <div class="k3d-360"><strong>360°</strong><span>SÜRÜKLE / DÖNDÜR</span></div>
   </div>
 
   <div class="stage" id="stage">
@@ -142,6 +147,7 @@ model-viewer{
       src="./KATMAN-KITAPLIK_3_V10-STIL.glb"
       alt="Kambiyum Katman Kitaplık 3D görünümü"
       camera-controls
+      disable-zoom
       auto-rotate
       auto-rotate-delay="2200"
       rotation-per-second="1.5deg"
